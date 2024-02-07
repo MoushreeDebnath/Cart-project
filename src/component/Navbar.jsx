@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { items } from './Data';
+import items from '../data.json';
 import { BsCartCheckFill  } from 'react-icons/bs';
 
 function Navbar({ setData, cart }) {

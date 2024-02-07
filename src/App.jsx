@@ -5,7 +5,7 @@ import ProductDetails from './component/ProductDetails';
 import Cart from './component/Cart';
 import SearchItem from './component/SearchItem';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { items } from './component/Data';
+import items from './data.json';
 
 function App() {
   const [data, setData] = useState([...items])

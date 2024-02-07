@@ -1,6 +1,6 @@
 import React , {useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
-import { items } from "./Data";
+import items from '../data.json';
 import Product from "./Product";
 
 function SearchItem(){
