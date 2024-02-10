@@ -30,7 +30,7 @@ function ProductDetails() {
                     <button className="btn btn-warning">Add To Cart</button>
                 </div>
             </div>
-            {/* <Product cart={cart} setCart={setCart} items={relatedProducts}/> */}
+            <Product items={relatedProducts}/>
         </>
     )
 }
