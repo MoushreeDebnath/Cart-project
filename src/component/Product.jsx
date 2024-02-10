@@ -2,26 +2,30 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {addToCart, selectCartItems} from '../redux/cartSlice';
+import { useDispatch, useSelector } from "react-redux";
 
 function Product({ items, cart, setCart }) {
-    const addToCart = (id, price, title, description, imgSrc) => {
-        const obj = {
-            id, price, title, description, imgSrc
-        }
-        setCart([...cart, obj]);
-        console.log("Cart element =", cart)
+    const dispatch = useDispatch()
+    const handleAddToCart = (item)=>{
+        dispatch(addToCart(item))
         toast.success('Item added to cart', {
-            position: "top-right",
-            autoClose: 1500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-           
-        });
+                    position: "top-right",
+                    autoClose: 1500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                   
+                });
     }
+
+    const cartItem = useSelector(selectCartItems)
+    console.log(cartItem)
+
+  
     return (
         <>
             <ToastContainer
@@ -58,7 +62,7 @@ function Product({ items, cart, setCart }) {
                                             <p className="card-text">{product.description}</p>
                                             <button className="btn btn-primary mx-3">{product.price}{"₹"}</button>
                                             <button className="btn btn-warning"
-                                                onClick={() => addToCart(product.id,product.price,product.title,product.description,product.imgSrc)}
+                                                onClick={() => handleAddToCart(product)}
                                             >Add To Cart</button>
                                         </div>
                                     </div>

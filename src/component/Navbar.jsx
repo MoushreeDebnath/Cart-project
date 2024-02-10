@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import items from '../data.json';
 import { BsCartCheckFill  } from 'react-icons/bs';
+import {selectCartItems} from '../redux/cartSlice';
+import {useSelector } from "react-redux";
 
 function Navbar({ setData, cart }) {
     //console.log(useLocation())
+    const cartItem = useSelector(selectCartItems)
     const [searchTerm, setSearchTerm] = useState("");
     const location = useLocation()
     const navigate = useNavigate();
@@ -40,7 +43,7 @@ function Navbar({ setData, cart }) {
                     <Link to={"/cart"} className="cart"><button type="button" className="btn btn-primary position-relative">
                         <BsCartCheckFill />
                         <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            {cart.length}
+                            {cartItem.length}
                             <span className="visually-hidden">unread messages</span>
                         </span>
                     </button></Link>
