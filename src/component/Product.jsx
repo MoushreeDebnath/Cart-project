@@ -4,8 +4,15 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {addToCart, selectCartItems} from '../redux/cartSlice';
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useEffect } from "react";
 
-function Product({ items, cart, setCart }) {
+function Product(props) {
+    console.log(props);
+    const [items,setItems] = useState(props.items)
+    useEffect(()=>{
+        setItems(props.items)
+    })
     const dispatch = useDispatch()
     const handleAddToCart = (item)=>{
         dispatch(addToCart(item))
@@ -23,7 +30,6 @@ function Product({ items, cart, setCart }) {
     }
 
     const cartItem = useSelector(selectCartItems)
-    console.log(cartItem)
 
   
     return (
