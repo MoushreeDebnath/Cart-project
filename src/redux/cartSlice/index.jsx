@@ -10,7 +10,8 @@ export const cartSlice = createSlice({
         addToCart:(state,action)=>{
             const newItem = action.payload;
             state.items.push(newItem);
-            state.totalPrice += newItem.price
+            state.totalPrice += Number(newItem.price)
+            console.log(state);
         },
         clearCart:(state)=>{
             state.items = [],
