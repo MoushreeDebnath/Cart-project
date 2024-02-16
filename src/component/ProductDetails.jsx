@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import items from '../data.json';
-//import Product from './Product';
+import Product from './Product';
 
 function ProductDetails() {
     const { id } = useParams();
     const [product, setProduct] = useState({})
-    const [relatedProducts, setRelatedProducts] = useState({})
+    const [relatedProducts, setRelatedProducts] = useState([])
+
     useEffect(() => {
-        const filterProduct = items.filter((product) => product.id == id)
-        //console.log(filterProduct)
-        setProduct(filterProduct[0])
+        const filterProduct = items.filter((product) => product.id == id)[0]
+        setProduct(filterProduct)
+        const relatedProd = items.filter((categories) => categories.category === filterProduct.category)
+        setRelatedProducts(relatedProd)
+    },[id])
 
-        const relatedProducts = items.filter((categories) => categories.category === product.category)
-        console.log(relatedProducts)
-        setRelatedProducts(relatedProducts)
-
-    }, [id,product.category])
     return (
         <>
             <div className="container details">
